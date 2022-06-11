@@ -3,7 +3,6 @@
 Stitching::Stitching() {}
 
 cv::Mat Stitching::apply(Image image) {
-    cout << "APPLY Stitching on " << image.getTitle() << endl;
     std::vector<cv::Mat> imagesVector;
 
     image.setMatrix("../assets/images/mountainLeft.jpeg");

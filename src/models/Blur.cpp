@@ -5,7 +5,6 @@ Blur::Blur(int kernelSize) {
 }
 
 cv::Mat Blur::apply(Image image) {
-    cout << "APPLY blur on " << image.getTitle() << endl;
 
     cv::Mat blur;
 

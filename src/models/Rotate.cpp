@@ -5,7 +5,6 @@ Rotate::Rotate(double angle) {
 }
 
 cv::Mat Rotate::apply(Image image) {
-    cout << "APPLY Rotate on " << image.getTitle() << endl;
 
     cv::Mat rotatedImage;
 
