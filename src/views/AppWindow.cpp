@@ -6,6 +6,7 @@
 #include "../models/headers/FileName.h"
 #include "../models/headers/Blur.h"
 #include "../models/headers/Gray.h"
+#include "../models/headers/Rotate.h"
 
 AppWindow::AppWindow() {
     this->title = "Gimp Like Image Editor";
@@ -96,6 +97,11 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
         effect = new Blur(kernelSize);
     }else if(actionName == "CONVERT TO GREY") {
         effect = new Gray();
+    }else if(actionName == "ROTATE") {
+        double angle;
+        cout << "Choose rotation angle :" << endl;
+        cin >> angle;
+        effect = new Rotate(angle);
     } else {
         effect = nullptr;
     }
