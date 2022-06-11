@@ -7,6 +7,7 @@
 #include "../../models/headers/FileName.h"
 #include "../../models/headers/Effect.h"
 #include "../../models/headers/Dilatation.h"
+#include "../../models/headers/Erosion.h"
 
 using namespace std;
 

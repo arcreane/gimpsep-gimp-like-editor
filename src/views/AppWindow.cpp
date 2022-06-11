@@ -69,14 +69,18 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
 
     if(actionName == "DILATATION"){
         int size = 0;
-        cout << "Choose dilatation size :" << endl;
-        cin >> size;
+        while(size<=0 || size>10){
+            cout << "Enter a dilatation size [1-10] :" << endl;
+            cin >> size;
+        }
         effect = new Dilatation(size);
     }else if(actionName == "EROSION"){
         int size = 0;
-        cout << "Choose erosion size :" << endl;
-        cin >> size;
-        effect = new Dilatation(size);
+        while(size<=0 || size>10){
+            cout << "Enter an erosion size [1-10] :" << endl;
+            cin >> size;
+        }
+        effect = new Erosion(size);
     }else{
         effect = nullptr;
     }
