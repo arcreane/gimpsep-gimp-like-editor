@@ -4,6 +4,8 @@
 #include "observer/Observer.h"
 #include "controllers/AppController.h"
 #include "views/AppWindow.h"
+#include "memento/Memento.h"
+#include "memento/MyMemento.h"
 
 using namespace std;
 
@@ -25,9 +27,6 @@ public:
         this->onLoad();
     }
 
-    /**
-     * Destructor
-     */
     ~GimpApplication(){
         subjectController.detach(*this);
     }
@@ -41,14 +40,13 @@ public:
             return;
         }
         if(!specialAction.empty()){
-            //Undo is handled with the Memento pattern
+            //undo is handled with the Memento pattern
             //History doesn't need state update
             return;
         }
         this->state = image;
         updateView();
     }
-
 
     /**
      * Runs when the class is instanciated to inform the User
@@ -89,6 +87,23 @@ public:
      */
     void updateView(){
         windowView.renderView(state.getMatrix());
+    }
+
+    /**
+    * Method used by the Memento Pattern and called by the Caretaker to store states in its memory
+    * @return
+    */
+    Memento *save() {
+        return new MyMemento(this->state, this->lastAppliedEffect);
+    }
+
+    /**
+     * Method used by the Memento Pattern and called by the Caretaker when the User requests a undo()
+     * @param memento
+     */
+    void restore(Memento *memento) {
+        this->state = memento->getState();
+        this->updateView();
     }
 
 };
