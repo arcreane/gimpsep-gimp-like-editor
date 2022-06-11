@@ -89,6 +89,13 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
             cin >> size;
         }
         effect = new Erosion(size);
+    }else if(actionName == "BRIGHTNESS") {
+        int factor = -201;
+        while(factor<-200 || factor>200){
+            cout << "Enter an brightness factor [-200; 200] :" << endl;
+            cin >> factor;
+        }
+        effect = new Brightness(factor);
     } else if(actionName == "CONTRAST") {
         float contrastValue;
         cout << "Choose contrast value :" << endl;
