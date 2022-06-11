@@ -15,6 +15,9 @@ class FileName{
                 {3, "fish.jpeg"},
                 {4, "mark.jpeg"},
                 {5, "vanGogh.jpeg"},
+                {6, "mountainCenter.jpeg"},
+                {7, "mountainLeft.jpeg"},
+                {8, "mountainRight.jpeg"},
         };
 
         FileName();

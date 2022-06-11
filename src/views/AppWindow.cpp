@@ -7,6 +7,7 @@
 #include "../models/headers/Blur.h"
 #include "../models/headers/Gray.h"
 #include "../models/headers/Rotate.h"
+#include "../models/headers/Stitching.h"
 
 AppWindow::AppWindow() {
     this->title = "Gimp Like Image Editor";
@@ -113,6 +114,8 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
         cout << "Choose rotation angle :" << endl;
         cin >> angle;
         effect = new Rotate(angle);
+    }else if(actionName == "STITCHING") {
+        effect = new Stitching();
     } else {
         effect = nullptr;
     }

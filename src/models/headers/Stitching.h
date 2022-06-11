@@ -6,11 +6,9 @@
 
 using namespace std;
 
-class Rotate : public Effect{
-    private:
-        double angle;
-
+class Stitching : public Effect {
     public:
-        Rotate(double angle);
+        Stitching();
+
         cv::Mat apply(Image image);
 };

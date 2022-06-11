@@ -8,7 +8,7 @@
 using namespace std;
 
 class Gray : public Effect{
-public:
-    Gray();
-    cv::Mat apply(Image image);
+    public:
+        Gray();
+        cv::Mat apply(Image image);
 };
