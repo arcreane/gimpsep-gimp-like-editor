@@ -11,47 +11,47 @@
 using namespace std;
 
 class GimpApplication : public Observer {
-private:
-    AppController&  subjectController;
-    AppWindow       windowView;
-    Image           state;
-    string          lastAppliedEffect;
+    private:
+        AppController&  subjectController;
+        AppWindow       windowView;
+        Image           state;
+        action_e        lastAppliedEffect;
 
-public:
-    /**
-     * Constructor used to map the GimpApplication with the Observer pattern on the AppController
-     * @param s : AppController to subscribe to
-     */
-    explicit GimpApplication(AppController& s);
-    ~GimpApplication();
+    public:
+        /**
+         * Constructor used to map the GimpApplication with the Observer pattern on the AppController
+         * @param s : AppController to subscribe to
+         */
+        explicit GimpApplication(AppController& s);
+        ~GimpApplication();
 
-    void beforeChangeUpdate(Subject& changedSubject) override;
-    void afterChangeUpdate(Subject& changedSubject, Image image, string specialAction) override;
+        void beforeChangeUpdate(Subject& changedSubject) override;
+        void afterChangeUpdate(Subject& changedSubject, Image image, action_e specialAction) override;
 
-    /**
-     * Runs when the class is instanciated to inform the User
-     */
-    void onLoad();
+        /**
+         * Runs when the class is instanciated to inform the User
+         */
+        void onLoad();
 
-    /**
-     * Main loop to ask action to user and to apply those actions while the user is not requesting Application EXIT
-     */
-    void run();
+        /**
+         * Main loop to ask action to user and to apply those actions while the user is not requesting Application EXIT
+         */
+        void run();
 
-    /**
-     * Calls the renderView function with a new Image Matrix to display
-     */
-    void updateView();
+        /**
+         * Calls the renderView function with a new Image Matrix to display
+         */
+        void updateView();
 
-    /**
-    * Method used by the Memento Pattern and called by the Caretaker to store states in its memory
-    * @return
-    */
-    Memento *save();
+        /**
+        * Method used by the Memento Pattern and called by the Caretaker to store states in its memory
+        * @return
+        */
+        Memento *save();
 
-    /**
-     * Method used by the Memento Pattern and called by the Caretaker when the User requests a undo()
-     * @param memento
-     */
-    void restore(Memento *memento);
+        /**
+         * Method used by the Memento Pattern and called by the Caretaker when the User requests a undo()
+         * @param memento
+         */
+        void restore(Memento *memento);
 };

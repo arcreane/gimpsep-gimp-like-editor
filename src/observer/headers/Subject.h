@@ -2,6 +2,7 @@
 
 #include "Observer.h"
 #include "../../models/headers/Image.h"
+#include "../../models/headers/UserAction.h"
 
 #pragma once
 
@@ -17,5 +18,5 @@ class Subject {
         void attach(Observer& o);
         void detach(Observer& o);
         void preChangeNotification();
-        void afterChangeNotification(Image image, string specialAction);
+        void afterChangeNotification(Image image, action_e specialAction);
 };

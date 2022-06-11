@@ -3,10 +3,9 @@
 #include <iostream>
 #include <string>
 #include <opencv2/opencv.hpp>
+
+#include "../../models/headers/UserAction.h"
 #include "../../models/headers/Effect.h"
-#include "../../models/headers/Dilatation.h"
-#include "../../models/headers/Erosion.h"
-#include "../../models/headers/Brightness.h"
 
 using namespace std;
 
@@ -36,13 +35,13 @@ class AppWindow {
          * Asks the Action that the user wants to perform on the loaded image
          * @return action name
          */
-        static string  askForActionName();
+        static action_e askForAction();
 
         /**
          * Create an instance of the Effect corresponding to the requested action
          * @param actionIndex : index in Action Enum of the requested Action
          * @return effect : Effect object with parameter to compute the desired action
          */
-        static Effect* getEffectInstanceWithParameters(string actionName);
+        static Effect* getEffectInstanceWithParameters(action_e action);
         string         askForFileName();
 };

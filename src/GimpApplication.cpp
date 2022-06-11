@@ -1,6 +1,6 @@
 #include "GimpApplication.h"
 
-#include "memento/headers/MyMemento.h"
+#include "memento/headers/GimpAppState.h"
 #include "models/headers/UserAction.h"
 
 GimpApplication::GimpApplication(AppController& s) : subjectController(s) {
@@ -16,12 +16,12 @@ void GimpApplication::beforeChangeUpdate(Subject& changedSubject) {
     return;
 }
 
-void GimpApplication::afterChangeUpdate(Subject& changedSubject, Image image, string specialAction) {
+void GimpApplication::afterChangeUpdate(Subject& changedSubject, Image image, action_e specialAction) {
     if(&changedSubject != &subjectController){
         return;
     }
 
-    if(!specialAction.empty()){
+    if(specialAction > 0 && specialAction < ACTION_MAX){
         //undo is handled with the Memento pattern
         //History doesn't need state update
         return;
@@ -41,34 +41,33 @@ void GimpApplication::onLoad(){
 /**
  * Main loop to ask action to user and to apply those actions while the user is not requesting Application EXIT
  */
-void GimpApplication::run(){
+void GimpApplication::run() {
     bool isRunning = true;
-    string userRequestedActionName;
+    action_e userRequestedAction;
     string imagePath = windowView.askForFileName();
-    this->afterChangeUpdate(subjectController, Image(imagePath), "");
+    this->afterChangeUpdate(subjectController, Image(imagePath), ACTION_MAX);
 
     while(isRunning){
-        userRequestedActionName         = windowView.askForActionName();
-        bool userWantsToExit            = (userRequestedActionName == UserAction::getExitAction());
-        bool userAsksForStateChanging   = (userRequestedActionName == UserAction::getHistoryAction() || userRequestedActionName == UserAction::getUndoAction());
+        userRequestedAction = AppWindow::askForAction();
 
-        if(userWantsToExit){
+        if(USER_WANTS_TO_EXIT(userRequestedAction)){
             isRunning = false;
-        }else if(userAsksForStateChanging){
-            subjectController.performSpecialAction(userRequestedActionName);
+        }else if(USER_ASK_FOR_STATE_CHANGING(userRequestedAction)){
+            subjectController.performSpecialAction(userRequestedAction);
         }else{
-            lastAppliedEffect = userRequestedActionName;
-            Effect* effect = windowView.getEffectInstanceWithParameters(userRequestedActionName);
+            lastAppliedEffect = userRequestedAction;
+            Effect* effect = AppWindow::getEffectInstanceWithParameters(userRequestedAction);
             subjectController.applyEffect(state, effect);
         }
     }
-    windowView.displayExitMessage();
+
+    AppWindow::displayExitMessage();
 }
 
 /**
  * Calls the renderView function with a new Image Matrix to display
  */
-void GimpApplication::updateView(){
+void GimpApplication::updateView() {
     windowView.renderView(state.getMatrix());
 }
 
@@ -77,7 +76,7 @@ void GimpApplication::updateView(){
 * @return
 */
 Memento * GimpApplication::save() {
-    return new MyMemento(this->state, this->lastAppliedEffect);
+    return new GimpAppState(this->state, actionNames[this->lastAppliedEffect]);
 }
 
 /**

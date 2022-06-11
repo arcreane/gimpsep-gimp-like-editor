@@ -15,7 +15,15 @@ void Subject::preChangeNotification() {
     }
 }
 
+/*
 void Subject::afterChangeNotification(Image image, string specialAction) {
+    for(auto* observer : observers){
+        observer->afterChangeUpdate(*this, image, specialAction);
+    }
+}
+*/
+
+void Subject::afterChangeNotification(Image image, action_e specialAction) {
     for(auto* observer : observers){
         observer->afterChangeUpdate(*this, image, specialAction);
     }

@@ -8,9 +8,9 @@ void AppController::applyEffect(Image image, Effect* effect){
     cv::Mat newMatrix = effect->apply(image);
     Image modifiedImage("Modified image", newMatrix);
 
-    afterChangeNotification(modifiedImage, "");
+    afterChangeNotification(modifiedImage, ACTION_MAX);
 }
 
-void AppController::performSpecialAction(string action){
+void AppController::performSpecialAction(action_e action){
     afterChangeNotification({}, action);
 }

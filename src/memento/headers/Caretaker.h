@@ -27,7 +27,7 @@ class Caretaker : public Observer {
         ~Caretaker() override;
 
         void beforeChangeUpdate(Subject& changedSubject) override;
-        void afterChangeUpdate(Subject& changedSubject, Image image, string specialAction) override;
+        void afterChangeUpdate(Subject& changedSubject, Image image, action_e specialAction) override;
 
         /**
          * Method that extract a memento from the Originator and save the states from

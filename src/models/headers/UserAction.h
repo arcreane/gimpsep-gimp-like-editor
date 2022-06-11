@@ -6,32 +6,44 @@
 
 using namespace std;
 
-class UserAction {
-    public :
-        inline static map<int, string> actions = {
-                {1, "DILATATION"},      //size
-                {2, "EROSION"},         //size
-                {3, "RESIZING"},        //newHeight, newWidth
-                {4, "BRIGHTNESS"},      //lightFactor
-                {5, "STITCHING"},       //No parameter
-                {6, "EDGE DETECTION"},  //No parameter
+#define USER_WANTS_TO_EXIT(userAction) \
+    (userAction == ACTION_QUIT)
 
-                {7, "CONVERT TO GREY"},  //TP2
-                {8, "CROP"},             //TP2
-                {9, "ROTATE"},          //TP2
+#define USER_ASK_FOR_STATE_CHANGING(userAction) \
+    (userAction == ACTION_HISTORY || userAction == ACTION_UNDO)
 
-                {10, "CONTRAST"},        //TP3
+typedef enum {
+    ACTION_QUIT,
+    ACTION_DILATATION,
+    ACTION_EROSION,
+    ACTION_RESIZING,
+    ACTION_BRIGHTNESS,
+    ACTION_STITCHING,
+    ACTION_EDGE_DETECTION,
+    ACTION_CONVERT_TO_GREY,
+    ACTION_CROP,
+    ACTION_ROTATE,
+    ACTION_CONTRAST,
+    ACTION_BLUR,
+    ACTION_HISTORY,
+    ACTION_UNDO,
+    ACTION_MAX
+} action_e;
 
-                {11, "BLUR"},            //TP5
-
-                {12, "HISTORY"},         //No parameter
-                {13, "UNDO"},            //No parameter
-                {-1, "QUIT"},            //No parameter
-        };
-
-        static string getActionName(int key);
-        static string getExitAction();
-        static string getHistoryAction();
-        static string getUndoAction();
-        static int    getNumberOfAvailableActions();
+static const char * actionNames[] = {
+        "QUIT",
+        "DILATATION",
+        "EROSION",
+        "RESIZING",
+        "BRIGHTNESS",
+        "STITCHING",
+        "EDGE DETECTION",
+        "CONVERT TO GREY",
+        "CROP",
+        "ROTATE",
+        "CONTRAST",
+        "BLUR",
+        "HISTORY",
+        "UNDO",
+        "COMMAND_MAX"
 };

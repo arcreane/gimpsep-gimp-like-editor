@@ -5,6 +5,7 @@
 
 #include "../../observer/headers/Subject.h"
 #include "../../models/headers/Effect.h"
+#include "../../models/headers/UserAction.h"
 
 using namespace std;
 
@@ -13,5 +14,5 @@ class AppController : public Subject {
         AppController();
 
         void applyEffect(Image image, Effect* effect);
-        void performSpecialAction(string action);
+        void performSpecialAction(action_e action);
 };

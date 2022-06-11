@@ -19,15 +19,15 @@ void Caretaker::beforeChangeUpdate(Subject& changedSubject) {
     this->backup();
 }
 
-void Caretaker::afterChangeUpdate(Subject& changedSubject, Image image, string specialAction) {
+void Caretaker::afterChangeUpdate(Subject& changedSubject, Image image, action_e specialAction) {
     if(&changedSubject != &subjectController){
         return;
     }
 
-    if(!specialAction.empty()) {
-        if(specialAction == UserAction::getHistoryAction()) {
+    if(specialAction > 0 && specialAction < ACTION_MAX) {
+        if(specialAction == ACTION_HISTORY) {
             this->showHistory();
-        } else if (specialAction == UserAction::getUndoAction()) {
+        } else if (specialAction == ACTION_UNDO) {
             this->undo();
         }
 

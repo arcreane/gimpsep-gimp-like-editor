@@ -1,6 +1,8 @@
 #include "headers/AppWindow.h"
 
 #include "../models/headers/Dilatation.h"
+#include "../models/headers/Erosion.h"
+#include "../models/headers/Brightness.h"
 #include "../models/headers/Blur.h"
 #include "../models/headers/Gray.h"
 #include "../models/headers/Rotate.h"
@@ -9,7 +11,6 @@
 #include "../models/headers/Resize.h"
 #include "../models/headers/Crop.h"
 #include "../models/headers/Contrast.h"
-#include "../models/headers/UserAction.h"
 #include "../models/headers/FileName.h"
 
 AppWindow::AppWindow() {
@@ -18,7 +19,7 @@ AppWindow::AppWindow() {
 }
 
 
-void AppWindow::renderView(const cv::Mat& image){
+void AppWindow::renderView(const cv::Mat& image) {
     cv::imshow(title, image);
     cout << "Press any key to display ACTIONS menu" << endl;
     cv::waitKey(0);
@@ -51,24 +52,23 @@ void AppWindow::displayExitMessage() {
  * Asks the Action that the user wants to perform on the loaded image
  * @return action name
  */
-string AppWindow::askForActionName() {
-    int userChoice = 0;
+action_e AppWindow::askForAction() {
+    int userChoice = -1;
+    int i;
 
     cout << "\n" << endl;
     cout << "---------- SELECT AN ACTION --------------" << endl;
 
-    for(const auto& [key, value]: UserAction::actions){
-        cout << key << " = " << value << endl;
+    for(i=0 ; i<ACTION_MAX ; i++) {
+        cout << i << " = " << actionNames[i] << endl;
     }
 
-    int maxChoiceIndex = UserAction::getNumberOfAvailableActions()-1;
-
-    while(userChoice < -1 || userChoice > maxChoiceIndex || userChoice == 0 ){
-        cout << "Enter your choice [0-" << maxChoiceIndex << "] : ";
+    while(userChoice < 0 || userChoice >= ACTION_MAX){
+        cout << "Enter your choice [0-" << ACTION_MAX << "] : ";
         cin >> userChoice;
     }
 
-    return UserAction::getActionName(userChoice);
+    return (action_e) userChoice;
 }
 
 /**
@@ -76,20 +76,20 @@ string AppWindow::askForActionName() {
  * @param actionIndex : index in Action Enum of the requested Action
  * @return effect : Effect object with parameter to compute the desired action
  */
-Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
+Effect* AppWindow::getEffectInstanceWithParameters(action_e action) {
     Effect* effect;
 
-    if(actionName == "DILATATION") {
+    if(action == ACTION_DILATATION) {
         int size = 0;
         cout << "Choose dilatation size :" << endl;
         cin >> size;
         effect = new Dilatation(size);
-    } else if(actionName == "EROSION") {
+    } else if(action == ACTION_EROSION) {
         int size = 0;
         cout << "Choose erosion size :" << endl;
         cin >> size;
         effect = new Dilatation(size);
-    } else if(actionName == "CONTRAST") {
+    } else if(action == ACTION_CONTRAST) {
         float contrastValue = -1;
         cout << "Choose contrast value (> 0) :" << endl;
 
@@ -98,7 +98,7 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
         }
 
         effect = new Contrast(contrastValue);
-    } else if(actionName == "CROP") {
+    } else if(action == ACTION_CROP) {
         int startColumn = -1;
         int endColumn = -1;
         int startRow = -1;
@@ -129,7 +129,7 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
         }
 
         effect = new Crop(startColumn, startRow, endColumn, endRow);
-    } else if(actionName == "RESIZING") {
+    } else if(action == ACTION_RESIZING) {
         int option = -1;
 
         while(option <= 0 || option > 2) {
@@ -170,24 +170,33 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
 
             effect = new Resize(scaleX, scaleY);
         }
-    } else if(actionName == "EDGE DETECTION") {
+    } else if(action == ACTION_EDGE_DETECTION) {
         effect = new EdgeDetection();
-    } else if(actionName == "BLUR") {
+    } else if(action == ACTION_BLUR) {
         int kernelSize;
         cout << "Choose kernel size :" << endl;
         cin >> kernelSize;
         effect = new Blur(kernelSize);
-    } else if(actionName == "CONVERT TO GREY") {
+    } else if(action == ACTION_CONVERT_TO_GREY) {
         effect = new Gray();
-    } else if(actionName == "ROTATE") {
+    } else if(action == ACTION_ROTATE) {
         double angle;
         cout << "Choose rotation angle :" << endl;
         cin >> angle;
         effect = new Rotate(angle);
-    } else if(actionName == "STITCHING") {
+    } else if(action == ACTION_STITCHING) {
         effect = new Stitching();
+    } else if(action == ACTION_BRIGHTNESS) {
+        int factor = -201;
+
+        while(factor<-200 || factor>200){
+            cout << "Enter an brightness factor [-200; 200] :" << endl;
+            cin >> factor;
+        }
+
+        effect = new Brightness(factor);
     } else {
-            effect = nullptr;
+        effect = nullptr;
     }
 
     return effect;
