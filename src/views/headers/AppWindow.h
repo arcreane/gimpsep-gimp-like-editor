@@ -3,10 +3,7 @@
 #include <iostream>
 #include <string>
 #include <opencv2/opencv.hpp>
-#include "../../models/headers/UserAction.h"
-#include "../../models/headers/FileName.h"
 #include "../../models/headers/Effect.h"
-#include "../../models/headers/Dilatation.h"
 
 using namespace std;
 

@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
+
 #include "../../models/headers/Image.h"
 
 #pragma once
 
 class Subject;
-
-class Observer{
+class Observer {
     public:
         virtual ~Observer() = default;
         virtual void beforeChangeUpdate(Subject& changedSubject) = 0;

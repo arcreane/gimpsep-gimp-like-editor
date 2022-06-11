@@ -1,6 +1,8 @@
 #pragma once
+
 #include <iostream>
 #include <opencv2/opencv.hpp>
+
 #include "Effect.h"
 #include "Image.h"
 

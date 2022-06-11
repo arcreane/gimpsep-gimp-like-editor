@@ -1,5 +1,7 @@
 #pragma once
+
 #include <iostream>
+
 #include "Memento.h"
 #include "../../models/headers/Image.h"
 

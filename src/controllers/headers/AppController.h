@@ -1,6 +1,8 @@
 #pragma once
+
 #include <iostream>
 #include <string>
+
 #include "../../observer/headers/Subject.h"
 #include "../../models/headers/Effect.h"
 

@@ -1,5 +1,8 @@
 #include "GimpApplication.h"
 
+#include "memento/headers/MyMemento.h"
+#include "models/headers/UserAction.h"
+
 GimpApplication::GimpApplication(AppController& s) : subjectController(s) {
         subjectController.attach(*this);
         this->onLoad();

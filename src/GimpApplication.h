@@ -1,15 +1,16 @@
 #pragma once
+
 #include <iostream>
 #include <string>
 #include "observer/headers/Observer.h"
+#include "observer/headers/Subject.h"
 #include "controllers/headers/AppController.h"
 #include "views/headers/AppWindow.h"
 #include "memento/headers/Memento.h"
-#include "memento/headers/MyMemento.h"
 
 using namespace std;
 
-class GimpApplication : public Observer{
+class GimpApplication : public Observer {
 private:
     AppController&  subjectController;
     AppWindow       windowView;

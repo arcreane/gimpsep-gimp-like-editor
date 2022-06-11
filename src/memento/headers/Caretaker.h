@@ -1,10 +1,13 @@
 #pragma once
+
 #include <iostream>
+#include <vector>
+
 #include "../../observer/headers/Observer.h"
 #include "../../controllers/headers/AppController.h"
-#include <vector>
-#include "Memento.h"
 #include "../../GimpApplication.h"
+#include "../../models/headers/Image.h"
+#include "Memento.h"
 
 class Caretaker : public Observer {
     private:

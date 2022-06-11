@@ -1,5 +1,7 @@
 #include "headers/Caretaker.h"
 
+#include "../models/headers/UserAction.h"
+
 Caretaker::Caretaker(AppController& subjectController, GimpApplication* gimpApplication): subjectController(subjectController), gimpApplication(gimpApplication) {
     subjectController.attach(*this);
     //this->gimpApplication = gimpApplication;
