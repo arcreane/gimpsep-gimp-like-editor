@@ -1,6 +1,10 @@
 #include "headers/AppWindow.h"
 
 #include "../models/headers/Dilatation.h"
+#include "../models/headers/Blur.h"
+#include "../models/headers/Gray.h"
+#include "../models/headers/Rotate.h"
+#include "../models/headers/Stitching.h"
 #include "../models/headers/EdgeDetection.h"
 #include "../models/headers/Resize.h"
 #include "../models/headers/Crop.h"
@@ -168,6 +172,20 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
         }
     } else if(actionName == "EDGE DETECTION") {
         effect = new EdgeDetection();
+    } else if(actionName == "BLUR") {
+        int kernelSize;
+        cout << "Choose kernel size :" << endl;
+        cin >> kernelSize;
+        effect = new Blur(kernelSize);
+    } else if(actionName == "CONVERT TO GREY") {
+        effect = new Gray();
+    } else if(actionName == "ROTATE") {
+        double angle;
+        cout << "Choose rotation angle :" << endl;
+        cin >> angle;
+        effect = new Rotate(angle);
+    } else if(actionName == "STITCHING") {
+        effect = new Stitching();
     } else {
             effect = nullptr;
     }
