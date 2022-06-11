@@ -1,5 +1,10 @@
 #include "headers/AppWindow.h"
 
+#include "../models/headers/Dilatation.h"
+#include "../models/headers/Contrast.h"
+#include "../models/headers/UserAction.h"
+#include "../models/headers/FileName.h"
+
 AppWindow::AppWindow() {
     this->title = "Gimp Like Image Editor";
     cv::namedWindow(title, cv::WINDOW_AUTOSIZE);
@@ -67,17 +72,22 @@ string AppWindow::askForActionName() {
 Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
     Effect* effect;
 
-    if(actionName == "DILATATION"){
+    if(actionName == "DILATATION") {
         int size = 0;
         cout << "Choose dilatation size :" << endl;
         cin >> size;
         effect = new Dilatation(size);
-    }else if(actionName == "EROSION"){
+    } else if(actionName == "EROSION") {
         int size = 0;
         cout << "Choose erosion size :" << endl;
         cin >> size;
         effect = new Dilatation(size);
-    }else{
+    } else if(actionName == "CONTRAST") {
+        float contrastValue;
+        cout << "Choose contrast value :" << endl;
+        cin >> contrastValue;
+        effect = new Contrast(contrastValue);
+    } else {
         effect = nullptr;
     }
 
