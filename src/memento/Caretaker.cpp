@@ -34,7 +34,6 @@ void Caretaker::afterChangeUpdate(Subject& changedSubject, Image image, string s
 }
 
 void Caretaker::backup() {
-    std::cout << "\nCaretaker: Saving Originator's state...\n";
     this->mementos_.push_back(this->gimpApplication->save());
 }
 
