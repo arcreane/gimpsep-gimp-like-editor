@@ -88,7 +88,7 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
         int size = 0;
         cout << "Choose erosion size :" << endl;
         cin >> size;
-        effect = new Dilatation(size);
+        effect = new Erosion(size);
     } else if(actionName == "CONTRAST") {
         float contrastValue = -1;
         cout << "Choose contrast value (> 0) :" << endl;
