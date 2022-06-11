@@ -7,14 +7,14 @@
 
 using namespace std;
 
-class MyMemento : public Memento {
+class GimpAppState : public Memento {
     private:
         string name;
         Image  state;
         string date_;
 
     public:
-        MyMemento(Image state, string name);
+        GimpAppState(Image state, string name);
 
         /**
          * The Originator uses this method when restoring its state.
