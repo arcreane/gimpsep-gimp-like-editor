@@ -4,6 +4,8 @@
 #include "../models/headers/Contrast.h"
 #include "../models/headers/UserAction.h"
 #include "../models/headers/FileName.h"
+#include "../models/headers/Blur.h"
+#include "../models/headers/Gray.h"
 
 AppWindow::AppWindow() {
     this->title = "Gimp Like Image Editor";
@@ -87,6 +89,13 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
         cout << "Choose contrast value :" << endl;
         cin >> contrastValue;
         effect = new Contrast(contrastValue);
+    }else if(actionName == "BLUR") {
+        int kernelSize;
+        cout << "Choose kernel size :" << endl;
+        cin >> kernelSize;
+        effect = new Blur(kernelSize);
+    }else if(actionName == "CONVERT TO GREY") {
+        effect = new Gray();
     } else {
         effect = nullptr;
     }
