@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class Effect{
-public:
-    virtual cv::Mat apply(Image image) = 0;
+class Effect {
+    public:
+        virtual cv::Mat apply(Image image) = 0;
 };

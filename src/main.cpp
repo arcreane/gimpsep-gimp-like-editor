@@ -1,6 +1,6 @@
-#include "controllers/AppController.h"
+#include "controllers/headers/AppController.h"
 #include "GimpApplication.h"
-#include "memento/Caretaker.h"
+#include "memento/headers/Caretaker.h"
 
 
 int main() {
