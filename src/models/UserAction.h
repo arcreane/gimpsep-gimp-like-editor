@@ -11,12 +11,20 @@ public :
             {1, "DILATATION"},      //size
             {2, "EROSION"},         //size
             {3, "RESIZING"},        //newHeight, newWidth
-            {4, "LIGHTEN"},         //lightFactor
-            {5, "DARKEN"},          //lightFactor
+            {4, "BRIGHTNESS"},      //lightFactor
             {6, "STITCHING"},       //No parameter
             {7, "EDGE DETECTION"},  //No parameter
-            {8, "HISTORY"},         //No parameter
-            {9, "UNDO"},            //No parameter
+
+            {8, "CONVERT TO GREY"},  //TP2
+            {9, "CROP"},             //TP2
+            {10, "ROTATE"},          //TP2
+
+            {11, "CONTRAST"},        //TP3
+
+            {12, "BLUR"},            //TP5
+
+            {13, "HISTORY"},         //No parameter
+            {14, "UNDO"},            //No parameter
             {-1, "QUIT"},
     };
 
