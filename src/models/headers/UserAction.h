@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class UserAction{
+class UserAction {
     public :
         inline static map<int, string> actions = {
                 {1, "DILATATION"},      //size

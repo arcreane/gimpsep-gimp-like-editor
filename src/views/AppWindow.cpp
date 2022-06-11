@@ -1,6 +1,9 @@
 #include "headers/AppWindow.h"
 
 #include "../models/headers/Dilatation.h"
+#include "../models/headers/EdgeDetection.h"
+#include "../models/headers/Resize.h"
+#include "../models/headers/Crop.h"
 #include "../models/headers/Contrast.h"
 #include "../models/headers/UserAction.h"
 #include "../models/headers/FileName.h"
@@ -83,12 +86,90 @@ Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
         cin >> size;
         effect = new Dilatation(size);
     } else if(actionName == "CONTRAST") {
-        float contrastValue;
-        cout << "Choose contrast value :" << endl;
-        cin >> contrastValue;
+        float contrastValue = -1;
+        cout << "Choose contrast value (> 0) :" << endl;
+
+        while(contrastValue < 0) {
+            cin >> contrastValue;
+        }
+
         effect = new Contrast(contrastValue);
+    } else if(actionName == "CROP") {
+        int startColumn = -1;
+        int endColumn = -1;
+        int startRow = -1;
+        int endRow = -1;
+
+        cout << "Choose start position (x > 0, y > 0) :" << endl;
+
+        while(startColumn < 0) {
+            cout << "\tx : ";
+            cin >> startColumn;
+        }
+
+        while(endColumn < 0) {
+            cout << "\ty : ";
+            cin >> endColumn;
+        }
+
+        cout << "Choose end position (x, y) :" << endl;
+
+        while(startRow < 0) {
+            cout << "\tx : ";
+            cin >> startRow;
+        }
+
+        while(endRow < 0) {
+            cout << "\ty : ";
+            cin >> endRow;
+        }
+
+        effect = new Crop(startColumn, startRow, endColumn, endRow);
+    } else if(actionName == "RESIZING") {
+        int option = -1;
+
+        while(option <= 0 || option > 2) {
+            cout << "Choose resizing option :" << endl;
+            cout << "1 = WIDTH & HEIGHT" << endl;
+            cout << "2 = SCALE FACTORS" << endl;
+            cin >> option;
+        }
+
+        if(option == 1) {
+            int width = 0;
+            int height = 0;
+
+            while (width < 1) {
+                cout << "New width : ";
+                cin >> width;
+            }
+
+            while (height < 1) {
+                cout << "New height : ";
+                cin >> height;
+            }
+
+            effect = new Resize(width, height);
+        } else {
+            double scaleX = 0;
+            double scaleY = 0;
+
+            while(scaleX <= 0) {
+                cout << "scale factor for X : ";
+                cin >> scaleX;
+            }
+
+            while (scaleY <= 0) {
+                cout << "Scale factor for Y : ";
+                cin >> scaleY;
+            }
+
+            effect = new Resize(scaleX, scaleY);
+        }
+    } else if(actionName == "EDGE DETECTION") {
+        effect = new EdgeDetection();
     } else {
-        effect = nullptr;
+            effect = nullptr;
     }
 
     return effect;

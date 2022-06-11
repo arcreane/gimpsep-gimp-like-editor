@@ -9,11 +9,11 @@ string UserAction::getExitAction(){
 }
 
 string UserAction::getHistoryAction(){
-    return actions.at(8);
+    return actions.at(12);
 }
 
 string UserAction::getUndoAction(){
-    return actions.at(9);
+    return actions.at(13);
 }
 
 int UserAction::getNumberOfAvailableActions(){

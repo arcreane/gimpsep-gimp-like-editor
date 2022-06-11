@@ -8,11 +8,9 @@ class Contrast : public Effect {
         float contrastValue;
 
     public:
-
         explicit Contrast(float contrastValue);
 
         cv::Mat apply(Image image) override;
 };
-
 
 #endif //GIMP_LIKE_EDITOR_CONTRAST_H
