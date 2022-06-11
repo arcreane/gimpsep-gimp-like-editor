@@ -1,5 +1,13 @@
 #include "headers/AppWindow.h"
 
+#include "../models/headers/Dilatation.h"
+#include "../models/headers/Contrast.h"
+#include "../models/headers/UserAction.h"
+#include "../models/headers/FileName.h"
+#include "../models/headers/Blur.h"
+#include "../models/headers/Gray.h"
+#include "../models/headers/Rotate.h"
+
 AppWindow::AppWindow() {
     this->title = "Gimp Like Image Editor";
     cv::namedWindow(title, cv::WINDOW_AUTOSIZE);
@@ -67,21 +75,38 @@ string AppWindow::askForActionName() {
 Effect* AppWindow::getEffectInstanceWithParameters(string actionName){
     Effect* effect;
 
-    if(actionName == "DILATATION"){
+    if(actionName == "DILATATION") {
         int size = 0;
         while(size<=0 || size>10){
             cout << "Enter a dilatation size [1-10] :" << endl;
             cin >> size;
         }
         effect = new Dilatation(size);
-    }else if(actionName == "EROSION"){
+    } else if(actionName == "EROSION") {
         int size = 0;
         while(size<=0 || size>10){
             cout << "Enter an erosion size [1-10] :" << endl;
             cin >> size;
         }
         effect = new Erosion(size);
-    }else{
+    } else if(actionName == "CONTRAST") {
+        float contrastValue;
+        cout << "Choose contrast value :" << endl;
+        cin >> contrastValue;
+        effect = new Contrast(contrastValue);
+    }else if(actionName == "BLUR") {
+        int kernelSize;
+        cout << "Choose kernel size :" << endl;
+        cin >> kernelSize;
+        effect = new Blur(kernelSize);
+    }else if(actionName == "CONVERT TO GREY") {
+        effect = new Gray();
+    }else if(actionName == "ROTATE") {
+        double angle;
+        cout << "Choose rotation angle :" << endl;
+        cin >> angle;
+        effect = new Rotate(angle);
+    } else {
         effect = nullptr;
     }
 
