@@ -1,4 +1,4 @@
-#include "headers/Erosion.h"
+#include "../headers/effects/Erosion.h"
 
 Erosion::Erosion(int size) {
     this->size = size;

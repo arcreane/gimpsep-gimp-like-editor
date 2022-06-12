@@ -1,4 +1,4 @@
-#include "headers/Rotate.h"
+#include "../headers/effects/Rotate.h"
 
 Rotate::Rotate(double angle) {
     this->angle = angle;

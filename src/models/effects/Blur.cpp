@@ -1,4 +1,4 @@
-#include "headers/Blur.h"
+#include "../headers/effects/Blur.h"
 
 Blur::Blur(int kernelSize) {
     this->kernelSize = kernelSize;

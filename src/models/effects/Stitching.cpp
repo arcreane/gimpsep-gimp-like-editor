@@ -1,4 +1,4 @@
-#include "headers/Stitching.h"
+#include "../headers/effects/Stitching.h"
 
 Stitching::Stitching() {}
 

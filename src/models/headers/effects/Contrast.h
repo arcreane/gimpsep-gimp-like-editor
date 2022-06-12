@@ -1,7 +1,7 @@
 #ifndef GIMP_LIKE_EDITOR_CONTRAST_H
 #define GIMP_LIKE_EDITOR_CONTRAST_H
 
-#include "Effect.h"
+#include "../Effect.h"
 
 class Contrast : public Effect {
     private:

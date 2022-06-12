@@ -1,7 +1,7 @@
 #ifndef GIMP_LIKE_EDITOR_CROP_H
 #define GIMP_LIKE_EDITOR_CROP_H
 
-#include "Effect.h"
+#include "../Effect.h"
 
 class Crop : public Effect {
     private:

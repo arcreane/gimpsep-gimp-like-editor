@@ -1,7 +1,7 @@
 #ifndef GIMP_LIKE_EDITOR_RESIZE_H
 #define GIMP_LIKE_EDITOR_RESIZE_H
 
-#include "Effect.h"
+#include "../Effect.h"
 
 class Resize : public Effect {
     private:

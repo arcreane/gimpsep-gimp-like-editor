@@ -1,5 +1,5 @@
 #include <opencv2/core/mat.hpp>
-#include "headers/Brightness.h"
+#include "../headers/effects/Brightness.h"
 
 Brightness::Brightness(int factor) {
     this->factor = factor;

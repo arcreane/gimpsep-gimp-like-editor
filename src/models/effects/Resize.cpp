@@ -1,4 +1,4 @@
-#include "headers/Resize.h"
+#include "../headers/effects/Resize.h"
 
 Resize::Resize(double scaleX, double scaleY) : scaleX(scaleX), scaleY(scaleY) {
     width = -1;

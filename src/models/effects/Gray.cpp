@@ -1,4 +1,4 @@
-#include "headers/Gray.h"
+#include "../headers/effects/Gray.h"
 
 Gray::Gray() {}
 

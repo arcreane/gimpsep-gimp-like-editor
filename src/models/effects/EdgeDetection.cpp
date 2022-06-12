@@ -1,8 +1,4 @@
-//
-// Created by Lou Rostan on 11/06/2022.
-//
-
-#include "headers/EdgeDetection.h"
+#include "../headers/effects/EdgeDetection.h"
 
 EdgeDetection::EdgeDetection() {}
 

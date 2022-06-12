@@ -1,16 +1,16 @@
 #include "headers/AppWindow.h"
 
-#include "../models/headers/Dilatation.h"
-#include "../models/headers/Erosion.h"
-#include "../models/headers/Brightness.h"
-#include "../models/headers/Blur.h"
-#include "../models/headers/Gray.h"
-#include "../models/headers/Rotate.h"
-#include "../models/headers/Stitching.h"
-#include "../models/headers/EdgeDetection.h"
-#include "../models/headers/Resize.h"
-#include "../models/headers/Crop.h"
-#include "../models/headers/Contrast.h"
+#include "../models/headers/effects/Dilatation.h"
+#include "../models/headers/effects/Erosion.h"
+#include "../models/headers/effects/Brightness.h"
+#include "../models/headers/effects/Blur.h"
+#include "../models/headers/effects/Gray.h"
+#include "../models/headers/effects/Rotate.h"
+#include "../models/headers/effects/Stitching.h"
+#include "../models/headers/effects/EdgeDetection.h"
+#include "../models/headers/effects/Resize.h"
+#include "../models/headers/effects/Crop.h"
+#include "../models/headers/effects/Contrast.h"
 #include "../models/headers/FileName.h"
 
 AppWindow::AppWindow() {
@@ -80,10 +80,9 @@ Effect* AppWindow::getEffectInstanceWithParameters(action_e action) {
     Effect* effect;
 
     if(action == ACTION_DILATATION) {
-        int size = 0;
-        cout << "Choose dilatation size :" << endl;
-        cin >> size;
-        effect = new Dilatation(size);
+        Dilatation* dilatation = new Dilatation();
+        dilatation->setParametersFromUserInput();
+        effect = dilatation;
     } else if(action == ACTION_EROSION) {
         int size = 0;
         cout << "Choose erosion size :" << endl;

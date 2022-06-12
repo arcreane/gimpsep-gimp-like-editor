@@ -1,4 +1,4 @@
-#include "headers/Contrast.h"
+#include "../headers/effects/Contrast.h"
 
 Contrast::Contrast(float contrastValue) {
     this->contrastValue = contrastValue;
