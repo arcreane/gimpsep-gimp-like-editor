@@ -7,12 +7,12 @@
 using namespace std;
 
 class Erosion : public Effect {
-private:
-    int size;
+    private:
+        int size;
 
-public:
-
-    Erosion(int size);
-
-    cv::Mat apply(Image image);
+    public:
+        static const int MIN_SIZE = 2;
+        static const int MAX_SIZE = 10;
+        cv::Mat apply(Image image);
+        void setParametersFromUserInput();
 };
