@@ -15,4 +15,5 @@ class AppController : public Subject {
 
         void applyEffect(Image image, Effect* effect);
         void performSpecialAction(action_e action);
+        void saveImage(Image image, string destinationPath);
 };

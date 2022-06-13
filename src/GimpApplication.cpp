@@ -52,6 +52,8 @@ void GimpApplication::run() {
 
         if(USER_WANTS_TO_EXIT(userRequestedAction)){
             isRunning = false;
+        }else if(USER_ASK_FOR_SAVING_CHANGES(userRequestedAction)){
+            subjectController.saveImage(this->state, saveDestination);
         }else if(USER_ASK_FOR_STATE_CHANGING(userRequestedAction)){
             subjectController.performSpecialAction(userRequestedAction);
         }else{

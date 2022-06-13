@@ -12,10 +12,12 @@ using namespace std;
 
 class GimpApplication : public Observer {
     private:
-        AppController&  subjectController;
-        AppWindow       windowView;
-        Image           state;
-        action_e        lastAppliedEffect;
+        const string            saveDestination = "../saved-images/";
+        AppController&          subjectController;
+        AppWindow               windowView;
+        Image                   state;
+        action_e                lastAppliedEffect;
+
 
     public:
         /**

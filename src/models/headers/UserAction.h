@@ -12,6 +12,9 @@ using namespace std;
 #define USER_ASK_FOR_STATE_CHANGING(userAction) \
     (userAction == ACTION_HISTORY || userAction == ACTION_UNDO)
 
+#define USER_ASK_FOR_SAVING_CHANGES(userAction) \
+    (userAction == ACTION_SAVE)
+
 typedef enum {
     ACTION_QUIT,
     ACTION_DILATATION,
@@ -26,6 +29,7 @@ typedef enum {
     ACTION_CONTRAST,
     ACTION_BLUR,
     ACTION_HISTORY,
+    ACTION_SAVE,
     ACTION_UNDO,
     ACTION_MAX
 } action_e;
@@ -44,6 +48,7 @@ static const char * actionNames[] = {
         "CONTRAST",
         "BLUR",
         "HISTORY",
+        "SAVE",
         "UNDO",
         "COMMAND_MAX"
 };
